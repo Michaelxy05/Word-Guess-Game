@@ -6,11 +6,7 @@ console.log(myArray);
 var randomCharacter = myArray[Math.floor(Math.random() * myArray.length)];
 console.log(randomCharacter);
 
-var heroToGuess = myArray[randomCharacter];
-
-
 // Making buttons with JS [A][B][C]
-
 
 var html = '';
 var c;
@@ -22,6 +18,7 @@ document.getElementById('buttonLetters').innerHTML = html;
 //
 var remainLetters = randomCharacter.length;
 
+//Print the asterisk in the innner html in place of printToplayer
 var asteriskHeroToGuess = [];
 for (var i = 0; i < randomCharacter.length; i++) {
     asteriskHeroToGuess[i] = "*";
@@ -31,8 +28,6 @@ for (var i = 0; i < randomCharacter.length; i++) {
     //Show progress here
     var swap = document.getElementById("printToPlayer");
 
-    //swap.innerHTML = asteriskHeroToGuess;
-    //Print the asterisk in the innner html in place of printToplayer
     swap.innerHTML = asteriskHeroToGuess.join(" ");
 
 var setLetter = function (letterGuessed) {
@@ -41,17 +36,14 @@ var setLetter = function (letterGuessed) {
     console.log(document.getElementById('alphabet'));
     document.getElementById('alphabet').innerHTML += x;
     console.log(x);
-    var remainLetters = 6;
     console.log("remainLetters", remainLetters);
-    var counter = 6;
 
-
-   /// document.getElementById('printToPlayer').innerHTML += x;
+    /// document.getElementById('printToPlayer').innerHTML += x;
     //Guess letter with keyboard here
     for (var j = 0; j < randomCharacter.length; j++) {
         
 
-         // What the fuck!!! Need to insert letter output from [game.js:17]!!!!!
+         // Check here to see if user's guess match letters in random word generated
          
         if (randomCharacter[j] == x) {
             console.log("Hey Im correct");
@@ -63,20 +55,22 @@ var setLetter = function (letterGuessed) {
             //Now you can tell the inner HTML the new value of asterix 
             swap.innerHTML = asteriskHeroToGuess.join(" ");
             remainLetters--;
-            healthBar();
             
+        } else {
+            // If user guess did not match, else statement is suppose to call function healthBar
+            healthBar();
            
             //Now insert a function to find the letter in your original Array buttonLetters and remove it
-        } else if (remainLetters == 0) {
+        } if (remainLetters == 0) {
             printToPlayer.innerHTML = "Congrats, you've won!";
 
         }
     }
 }
 
-    function heathBar() {
+    function healthBar() {
 
-        var remTries = counter;
+        var remTries = remainLetters;
         console.log(remTries);
     
         for (var j = -1; j < remTries; j++) {
